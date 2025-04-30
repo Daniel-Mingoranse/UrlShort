@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env
+.DS_Store
+*.log
+# Ignore editor folders
+.vscode/
+.idea/
+# Ignore OS files
+Thumbs.db
