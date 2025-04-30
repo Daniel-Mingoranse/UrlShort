@@ -7,7 +7,7 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/shorten', {
+      const response = await fetch('https://urlshort-555r.onrender.com/shorten', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

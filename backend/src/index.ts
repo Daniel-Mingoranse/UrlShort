@@ -4,13 +4,16 @@ import { nanoid } from "nanoid";
 import { urlDatabase } from "./urlcontroller";
 
 const app = express()
-app.use(cors({
-  origin: "http://localhost:3000"
-}));
+app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('<h1>Servidor rodando porta 5000</h1>');
+    res.send('<h1>Servidor rodando</h1>');  
+}
+);
+
+app.get('/shorten', (req, res) => {
+    res.send('<h1>Api On</h1>');  
 }
 );
 
@@ -20,9 +23,10 @@ app.post('/shorten', (req, res) => {
     const shortId = nanoid(6);
     urlDatabase[shortId] = originalUrl;
     console.log(shortId);
-    res.json({ shortUrl: `http://localhost:5000/${shortId}` });
+    res.json({ shortUrl: `https://urlshort-555r.onrender.com/${shortId}` });
 }
 );
+
 
 
 // redirect to original URL
@@ -31,14 +35,14 @@ app.get('/:id', (req, res) => {
     if (originalUrl) {
         res.redirect(originalUrl);
     } else {
-        res.status(404).send('URL not found');
+        res.status(404).send('URL nao encontrada');
     }
 }
 );
 
 
-app.listen(5000, () => {
-    console.log('Server is running on port 5000');
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
-
 // Removed the conflicting local express function
